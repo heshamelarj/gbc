@@ -22,7 +22,6 @@
      Modules               |                               STATE                            
     ---------------------- | -----------------------------------------------------------
      ADMIN                 |    ![#1589F0](https://placehold.it/15/FFA500/000000?text=+)    
-                           |                                                                
           Projet           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
           Client           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
           Facture          |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
@@ -40,10 +39,7 @@
           Caisse           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
           CaisseLog        |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
           Agenda           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
-                                                                                        
-                           |                                                                
      USER                  |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
-                           |                                                                
           Tache            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
           Inbox            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
           Chat             |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
