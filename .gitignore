@@ -10,3 +10,5 @@ yarn-error.log
 /var/cache/
 .env
 /.idea/
+/src/Migrations/
+/var/log

@@ -1,3 +1,6 @@
 body {
     background-color: lightgray;
 }
+i.menu-item-icon-projet{
+    color: blue!important;
+}

@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
  */
 class UserRepository extends ServiceEntityRepository
 {
@@ -22,19 +23,27 @@ class UserRepository extends ServiceEntityRepository
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByRoleField($value)
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
+            ->andWhere('u.role = :val')
             ->setParameter('val', $value)
             ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->setMaxResults(20)
+            ;
     }
-    */
+
+    public function findAllByExepctRoleValue($value, $value2)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.role != :val')
+            ->andWhere('u.role != :val2')
+            ->setParameter('val', $value)
+            ->setParameter('val2', $value2)
+            ->orderBy('u.id', 'ASC');
+    }
+
 
     /*
     public function findOneBySomeField($value): ?User

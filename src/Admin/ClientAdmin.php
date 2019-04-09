@@ -13,15 +13,12 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
-use Sonata\AdminBundle\Form\Type\ModelListType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use App\Entity\Projet;
 use App\Entity\Facture;
-use App\Form\ProjetType;
 
 class ClientAdmin extends AbstractAdmin
 {
@@ -36,12 +33,16 @@ class ClientAdmin extends AbstractAdmin
         $form->add('datenaissance',DateTimeType::class);
         $form->add('cin',TextType::class);
         $form->add('telephone',TextType::class);
-        $form->add('projets',CollectionType::class, [
-           'entry_type' => ProjetType::class
-       ]);
-       /* $form->add('factures', ModelAutocompleteType::class, array(
-            'multiple' => true
-        ));*/
+        $form->add('projets',ModelType::class, [
+            'class' => Projet::class,
+            'multiple' => true,
+            'property' => 'nomprojet'
+        ]);
+       $form->add('factures', ModelType::class, array(
+            'class' => Facture::class,
+            'multiple' => true,
+            'property' => 'numero'
+        ));
 
     }
     protected function configureDatagridFilters(DatagridMapper $filter)
@@ -50,14 +51,19 @@ class ClientAdmin extends AbstractAdmin
     }
     protected function configureListFields(ListMapper $list)
     {
-        $list->add('nom');
-        $list->add('prenom');
-        $list->add('email');
-        $list->add('adresse');
-        $list->add('datenaissance');
-        $list->add('cin');
-        $list->add('telephone');
-        $list->add('projets');
+        $list->add('nom')
+        ->add('prenom')
+        ->add('email')
+        ->add('adresse')
+        ->add('datenaissance')
+        ->add('cin')
+        ->add('telephone')
+     /*   $list->add('projets',null, [
+            'associated_property' => 'nomprojet'
+        ]);*/
+        ->add('factures',null, [
+            'associated_property' => 'numero'
+        ]);
     }
 
 

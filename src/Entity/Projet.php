@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,42 @@ class Projet
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="projet", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $services;
+
+    /**
+     * @return mixed
+     */
+    public function getServices(): ?Collection
+    {
+        return $this->services;
+    }
+
+
+    /**
+     * @param Service $service
+     * @return Projet
+     */
+    public function addService(Service $service) :self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+
+            $service->setProjet($this);
+        }
+
+        return $this;
+
+    }
+
+
+    public function __construct()
+    {
+        $this->services = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

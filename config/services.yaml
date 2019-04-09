@@ -28,12 +28,42 @@ services:
         class: App\Admin\ProjetAdmin
         arguments: [~, App\Entity\Projet, ~]
         tags:
-          - {name: sonata.admin, manager_type: orm, label: Projet}
+          - {name: sonata.admin, manager_type: orm, group: Projet, label: Projet}
 
     admin.client:
             class: App\Admin\ClientAdmin
             arguments: [~, App\Entity\Client, ~]
             tags:
-              - {name: sonata.admin, manager_type: orm, label: Client}
+              - {name: sonata.admin, manager_type: orm, group: Client, label: Client}
+
+    admin.facture:
+                class: App\Admin\FactureAdmin
+                arguments: [~, App\Entity\Facture, ~]
+                tags:
+                  - {name: sonata.admin, manager_type: orm, group: Facture,  label: Facture}
+
+    admin.service:
+                class: App\Admin\ServiceAdmin
+                arguments: [~, App\Entity\Service, ~  ]
+                tags:
+                  - {name: sonata.admin, manager_type: orm, group: Service,  label: Service}
+
+    admin.user:
+              class: App\Admin\UserAdmin
+              arguments: [~, App\Entity\User, ~  ]
+              tags:
+                - {name: sonata.admin, manager_type: orm, group: User,  label: User}
+
+    admin.metier:
+              class: App\Admin\MetierAdmin
+              arguments: [~, App\Entity\Metier, ~  ]
+              tags:
+                - {name: sonata.admin, manager_type: orm, Metier ,  label: Metier}
+
+    admin.tache:
+              class: App\Admin\TacheAdmin
+              arguments: [~, App\Entity\Tache, ~  ]
+              tags:
+                - {name: sonata.admin, manager_type: orm, Tache ,  label: Tache}
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

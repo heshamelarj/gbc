@@ -1,8 +1,82 @@
 sonata_admin:
-    title: 'Sonata Admin'
+    title: 'GBC ADMINISTRATION'
     dashboard:
-        blocks:
-            - { type: sonata.admin.block.admin_list, position: left }
+        groups:
+          Projet:
+                label:                ~
+                keep_open:            true
+                icon:                 '<i class="fa blue fa-briefcase menu-item-icon-projet"></i>'
+                label_catalogue: ~
+                items:
+                    - route:          admin_app_projet_create
+                      label:          'Ajouter Projet'
+                    - route:          admin_app_projet_list
+                      label:          'Lister Projets'
+          Client:
+                label:                ~
+                icon:                 '<i class="fa fa-user menu-item-icon-client"></i>'
+                label_catalogue:      ~
+                items:
+                    - route:          admin_app_client_create
+                      label:          'Ajouter Client'
+                    - route:          admin_app_client_list
+                      label:          'Lister Projets'
+
+          Facture:
+                label:                ~
+                icon:                 '<i class="fa fa-file"></i>'
+                label_catalogue:      ~
+                items:
+                    - route:          admin_app_facture_create
+                      label:          'Ajouter Facture'
+                    - route:          admin_app_facture_list
+                      label:          'Lister Factures'
+
+          Service:
+                label:                ~
+                icon:                 '<i class="fa fa-cogs"></i>'
+                label_catalogue:      ~
+                items:
+                    - route:          admin_app_service_create
+                      label:          'Ajouter Service'
+                    - route:          admin_app_service_list
+                      label:          'Lister Services'
+
+          Metier:
+                label:                ~
+                icon:                 '<i class="fa fa-building"></i>'
+                label_catalogue:      ~
+                items:
+                    - route:          admin_app_metier_create
+                      label:          'Ajouter Metier'
+                    - route:          admin_app_metier_list
+                      label:          'Lister Metiers'
+
+          Tache:
+                label:                ~
+                icon:                 '<i class="fa fa-tasks"></i>'
+                label_catalogue:      ~
+                items:
+                    - route:          admin_app_tache_create
+                      label:          'Ajouter Tache'
+                    - route:          admin_app_tache_list
+                      label:          'Lister Taches'
+
+          Employee:
+                label:                ~
+                icon:                 '<i class="fa fa-user"></i>'
+                label_catalogue:      ~
+                items:
+                    - route:          admin_app_user_create
+                      label:          'Ajouter Employee'
+                    - route:          admin_app_user_list
+                      label:          'Lister Employees'
+
+
+
+    assets:
+          extra_stylesheets:
+              - bundles/sonatatranslation/css/sonata-translation.css
 
 
 
@@ -11,3 +85,5 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+

@@ -54,8 +54,7 @@ class Client
     private $adresse;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Projet", mappedBy="client", cascade={"persist"}, orphanRemoval=true, fetch="EAGER")
-     * @ORM\Column(nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Projet", mappedBy="client", cascade={"persist"}, orphanRemoval=true)
      * @ORM\OrderBy({"id" = "ASC"})
      */
     private $projets;
@@ -163,7 +162,7 @@ class Client
     /**
      * @return Collection|Projet[]
      */
-    public function getProjets(): Collection
+    public function getProjets() : Collection
     {
 
             return $this->projets;
@@ -174,20 +173,18 @@ class Client
     {
 
         $this->projets = $projets;
-        dump($projets);
-        die();
         return $this;
     }
-    public function addProjet(Projet $projet)
+    // * Think this method is not used by SonataAdmin CRUDController
+
+    public function addProjet(Projet $projet): self
     {
         if (!$this->projets->contains($projet)) {
-            $this->projets = $projet;
+            $this->projets[] = $projet;
 
             $projet->setClient($this);
         }
-
-
-
+        return $this;
     }
 
     public function removeProjet(Projet $projet): self

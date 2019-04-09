@@ -33,8 +33,26 @@ class Service
      */
     private $datefin;
 
-    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Projet", inversedBy="services")
+     */
+    private $projet;
 
+    /**
+     * @return mixed
+     */
+    public function getProjet()
+    {
+        return $this->projet;
+    }
+
+    /**
+     * @param mixed $projet
+     */
+    public function setProjet($projet): void
+    {
+        $this->projet = $projet;
+    }
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="services")
      */
@@ -47,7 +65,7 @@ class Service
 
     public function __construct()
     {
-        $this->teches = new ArrayCollection();
+        $this->taches = new ArrayCollection();
         $this->employes = new ArrayCollection();
         $this->taches = new ArrayCollection();
     }
@@ -100,7 +118,7 @@ class Service
     /**
      * @return Collection|user[]
      */
-    public function getEmployes(): Collection
+    public function getEmployes(): ?Collection
     {
         return $this->employes;
     }
@@ -126,7 +144,7 @@ class Service
     /**
      * @return Collection|tache[]
      */
-    public function getTaches(): Collection
+    public function getTaches(): ?Collection
     {
         return $this->taches;
     }
