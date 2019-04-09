@@ -20,7 +20,7 @@
 - the development state of the app's modules
 
      Modules               |                               STATE                            
-    ---------------------- | -----------------------------------------------------------
+    ---------------------- | ------------------------------------------------------------
      ADMIN                 |    ![#1589F0](https://placehold.it/15/FFA500/000000?text=+)
           Projet           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) 
           Client           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)   
