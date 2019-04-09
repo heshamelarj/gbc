@@ -18,36 +18,36 @@
 
 ## Modules 
 - the development state of the app's modules
-|    Modules               |                               STATE                            |
-| ------------------------:|:--------------------------------------------------------------:|
-|  - ADMIN                 |    ![#1589F0](https://placehold.it/15/FFA500/000000?text=+)    |
-|                          |                                                                |
-|       * Projet           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    |
-|       * Client           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    |
-|       * Facture          |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    |
-|       * Service          |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    |
-|       * Metier           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    |
-|       * Tache            |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    |
-|       * Employe          |    ![#1589F0](https://placehold.it/15/FFA500/000000?text=+)    |
-|       * Produit          |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Stock            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Stock            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * LignFacture      |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Message          |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * MessageTache     |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Commentaire      |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Caisse           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * CaisseLog        |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Agenda           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|                                                                                        |
-|                          |                                                                |
-|  - USER                  |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|                          |                                                                |
-|       * Tache            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Inbox            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Chat             |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * Agenda           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
-|       * ...              |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    |
+     Modules               |                               STATE                            
+  ------------------------ | -----------------------------------------------------------
+   - ADMIN                 |    ![#1589F0](https://placehold.it/15/FFA500/000000?text=+)    
+                           |                                                                
+        * Projet           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
+        * Client           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
+        * Facture          |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
+        * Service          |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
+        * Metier           |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
+        * Tache            |    ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)    
+        * Employe          |    ![#1589F0](https://placehold.it/15/FFA500/000000?text=+)    
+        * Produit          |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Stock            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Stock            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * LignFacture      |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Message          |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * MessageTache     |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Commentaire      |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Caisse           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * CaisseLog        |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Agenda           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+                                                                                        
+                           |                                                                
+   - USER                  |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+                           |                                                                
+        * Tache            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Inbox            |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Chat             |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * Agenda           |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
+        * ...              |    ![#1589F0](https://placehold.it/15/f03c15/000000?text=+)    
 
 -> Table keys :
 
