@@ -4,7 +4,6 @@ sonata_admin:
         groups:
           Projet:
                 label:                ~
-                keep_open:            true
                 icon:                 '<i class="fa blue fa-briefcase menu-item-icon-projet"></i>'
                 label_catalogue: ~
                 items:
@@ -14,7 +13,7 @@ sonata_admin:
                       label:          'Lister Projets'
           Client:
                 label:                ~
-                icon:                 '<i class="fa fa-user menu-item-icon-client"></i>'
+                icon:                 '<i class="fa fa-user menu-item-icon-client menu-item-icon-client"></i>'
                 label_catalogue:      ~
                 items:
                     - route:          admin_app_client_create
@@ -24,7 +23,7 @@ sonata_admin:
 
           Facture:
                 label:                ~
-                icon:                 '<i class="fa fa-file"></i>'
+                icon:                 '<i class="fa fa-file menu-item-icon-facture"></i>'
                 label_catalogue:      ~
                 items:
                     - route:          admin_app_facture_create
@@ -34,7 +33,7 @@ sonata_admin:
 
           Service:
                 label:                ~
-                icon:                 '<i class="fa fa-cogs"></i>'
+                icon:                 '<i class="fa fa-cogs menu-item-icon-service"></i>'
                 label_catalogue:      ~
                 items:
                     - route:          admin_app_service_create
@@ -44,7 +43,7 @@ sonata_admin:
 
           Metier:
                 label:                ~
-                icon:                 '<i class="fa fa-building"></i>'
+                icon:                 '<i class="fa fa-building menu-item-icon-metier"></i>'
                 label_catalogue:      ~
                 items:
                     - route:          admin_app_metier_create
@@ -54,7 +53,7 @@ sonata_admin:
 
           Tache:
                 label:                ~
-                icon:                 '<i class="fa fa-tasks"></i>'
+                icon:                 '<i class="fa fa-tasks menu-item-icon-tache"></i>'
                 label_catalogue:      ~
                 items:
                     - route:          admin_app_tache_create
@@ -64,7 +63,7 @@ sonata_admin:
 
           Employee:
                 label:                ~
-                icon:                 '<i class="fa fa-user"></i>'
+                icon:                 '<i class="fa fa-user menu-item-icon-employee"></i>'
                 label_catalogue:      ~
                 items:
                     - route:          admin_app_user_create
@@ -77,6 +76,7 @@ sonata_admin:
     assets:
           extra_stylesheets:
               - bundles/sonatatranslation/css/sonata-translation.css
+              - build/app.css
 
 
 

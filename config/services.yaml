@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    profile_images_directory: '%kernel.project_dir%/public/uploads/profile_images'
+
 
 services:
     # default configuration for services in *this* file
@@ -23,7 +25,9 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-
+    App\Services\FileUploader:
+        arguments:
+            $targetDirectory: '%profile_images_directory%'
     admin.projet:
         class: App\Admin\ProjetAdmin
         arguments: [~, App\Entity\Projet, ~]
@@ -51,8 +55,10 @@ services:
     admin.user:
               class: App\Admin\UserAdmin
               arguments: [~, App\Entity\User, ~  ]
+
               tags:
                 - {name: sonata.admin, manager_type: orm, group: User,  label: User}
+
 
     admin.metier:
               class: App\Admin\MetierAdmin
@@ -65,5 +71,10 @@ services:
               arguments: [~, App\Entity\Tache, ~  ]
               tags:
                 - {name: sonata.admin, manager_type: orm, Tache ,  label: Tache}
+    admin.image:
+              class: App\Admin\ImageAdmin
+              arguments: [~, App\Entity\Image, ~  ]
+              tags:
+                - {name: sonata.admin, manager_type: orm,  label: Image}
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

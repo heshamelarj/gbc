@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -12,6 +13,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
  class User implements UserInterface
 {
+     /**
+      * @var $passwordEncoder UserSecurity
+      */
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -30,10 +35,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade="ALL" , mappedBy="user")
      */
-    private $photo;
+    private $image;
 
+     /**
+      * @var $file UploadedFile entity property
+      */
+    private $file;
     /**
      * @ORM\Column(type="datetime")
      */
@@ -96,6 +105,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
         $this->taches = new ArrayCollection();
         $this->messagetaches = new ArrayCollection();
         $this->messages = new ArrayCollection();
+//        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,7 +193,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
-
         return $this;
     }
 
@@ -348,6 +357,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
     public function getPassword(): ?string
     {
+
         return $this->password;
     }
 
@@ -378,9 +388,73 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
 
+     /**
+      * @return UploadedFile
+      */
+     public function getFile()
+     {
+         return $this->file;
+     }
+
+     /**
+      * @param UploadedFile $file
+      */
+     public function setFile(UploadedFile $file ): void
+     {
+         $this->file = $file;
+     }
+
      public function __toString()
-    {
-        // TODO: Implement __toString() method.
-        return $this->getNom();
-    }
-}
+     {
+         // TODO: Implement __toString() method.
+         return $this->getNom();
+     }
+
+     /**
+      * @return mixed
+      */
+    /* public function getImages()
+     {
+         return $this->images;
+     }
+
+
+     public function AddImage(Image $image): self
+     {
+         if (!$this->images->contains($image)) {
+             $this->images[] = $image;
+             $image->setUser($this);
+         }
+         return $this;
+     }
+
+     public function removeImage(Image $image): self
+     {
+         if ($this->images->contains($image)) {
+             $this->images->removeElement($image);
+             // set the owning side to null (unless already changed)
+             if ($image->getUser() === $this) {
+                 $image->setUser(null);
+             }
+         }
+
+         return $this;
+     }*/
+
+     /**
+      * @return mixed
+      */
+     public function getImage()
+     {
+         return $this->image;
+     }
+
+     /**
+      * @param mixed $image
+      */
+     public function setImage($image): void
+     {
+         $this->image = $image;
+         $image->setUser($this);
+     }
+ }

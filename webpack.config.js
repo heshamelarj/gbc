@@ -17,6 +17,8 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+    //enable scss processing and compiling
+    .enableSassLoader()
 
     .addEntry('app', './assets/js/app.js')
     //.addEntry('page1', './assets/js/page1.js')

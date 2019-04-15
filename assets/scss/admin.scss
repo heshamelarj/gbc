@@ -1,0 +1,41 @@
+@import "variables.scss";
+
+
+.menu-item-icon-projet{
+  color: #001f3f;
+}
+.menu-item-icon-client{
+  color: #00acd6;
+}
+.menu-item-icon-facture {
+  color: #5148ff;
+}
+.menu-item-icon-service{
+  color: #1b6d85;
+}
+.menu-item-icon-metier{
+  color: #00b3ee;
+}
+.menu-item-icon-tache{
+  color: #365bff
+}
+.menu-item-icon-employee{
+  color: #0f51ff
+}
+@each $current-treeview-color in $treeview-color-list {
+  $i : index($treeview-color-list, $current-treeview-color);
+  .treeview:nth-of-type(#{$i}) {
+    span{
+      color: $current-treeview-color;
+    }
+  }
+}
+
+.employe-profile-thumbnail{
+  max-width: 5em;
+  max-height: 2.5em;
+  img{
+    border-radius: .2em;
+
+  }
+}

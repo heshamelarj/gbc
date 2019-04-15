@@ -1,0 +1,8 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+{% block field %}
+    {% if object.image != null %}
+        <div class="employe-profile-thumbnail">
+            <img src={{ asset('uploads/profile_images/'~object.image.getName())  }}>
+        </div>
+    {% endif %}
+{% endblock %}
