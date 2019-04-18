@@ -19,11 +19,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\Type\AdminType;
 use Sonata\AdminBundle\Form\Type\ModelType;
-use Sonata\BlockBundle\Form\Mapper\FormMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UserAdmin extends AbstractAdmin
 {
@@ -36,7 +34,7 @@ class UserAdmin extends AbstractAdmin
 
 
 
-    protected function configureFormFields(\Sonata\AdminBundle\Form\FormMapper $form)
+    protected function configureFormFields(FormMapper $form)
     {
 
 
@@ -44,7 +42,10 @@ class UserAdmin extends AbstractAdmin
         $form->add('login', TextType::class)
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('image', AdminType::class)
+            ->add('image', AdminType::class,
+                [
+                    'label'     =>      'Photo'
+                ])
             ->add('datenaissance', DateType::class)
             ->add('role', TextType::class)
             ->add('cin', TextType::class)
@@ -77,17 +78,9 @@ class UserAdmin extends AbstractAdmin
     public function prePersist($object)
     {
         //TODO: Code Review Needed
-      /*  $image = new Image();
-        $image->setFile($object->getImage()->getFile());
-        $image->setName($this->fileUploader->upload($image->getFile()));
-        $image->setUser($object);
-        $object->setImage($image);*/
         $this->manageEmbeddedImageAdmins($object);
-
-
         $hashedDefaultPassword = $this->passwordEncoder->encodeUserPassword($object, $object->getDatenaissance()->format('Y-m-d h:i:s'));
         $object->setPassword($hashedDefaultPassword);
-
     }
 
     /**
@@ -95,15 +88,11 @@ class UserAdmin extends AbstractAdmin
      */
     public function preUpdate($object)
     {
-        $this->manageEmbeddedImageAdmins($object);
 
+        $this->manageEmbeddedImageAdmins($object);
+        //TODO: Move the default password logic to the Getter/Setter
         $hashedDefaultPassword = $this->passwordEncoder->encodeUserPassword($object, $object->getDatenaissance()->format('Y-m-d h:i:s'));
         $object->setPassword($hashedDefaultPassword);
-/*        $this->imageName = $this->uploadPhoto($object->getFile());
-
-        $object->setPhoto($this->getImageName());
-        dump($this->getImageName());
-        die;*/
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)
@@ -131,12 +120,17 @@ class UserAdmin extends AbstractAdmin
 
     private function manageEmbeddedImageAdmins($page)
     {
+
         foreach ($this->getFormFieldDescriptions() as $fieldName => $fieldDescription) {
             // detect embedded Admins that manage Images
-            if ($fieldDescription->getType() === 'sonata_type_admin' &&
+
+
+            if ($fieldDescription->getType() === AdminType::class &&
                 ($associationMapping = $fieldDescription->getAssociationMapping()) &&
                 $associationMapping['targetEntity'] === 'App\Entity\Image'
             ) {
+
+
                 $getter = 'get' . $fieldName;
                 $setter = 'set' . $fieldName;
 
@@ -145,9 +139,12 @@ class UserAdmin extends AbstractAdmin
 
                 if ($image) {
                     if ($image->getFile()) {
+
                         // update the Image to trigger file management
+
                         $image->refreshUpdated();
-                    } elseif (!$image->getFile() && !$image->getName()) {
+                    } else if (!$image->getFile() && !$image->getName()) {
+
                         // prevent Sf/Sonata trying to create and persist an empty Image
                         $page->$setter(null);
                     }

@@ -15,6 +15,9 @@ class Image
 
 
 const PATH_TO_UPLOADS_DIR = 'uploads/profile_images';
+const FULLPATH_TO_IMAGES_DIR = '/uploads/profile_images';
+const EMPLOYEE_PHOTO_PROFILE_PLACEHOLDER_DIR = '/assets/img/placeholder.png';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -120,8 +123,8 @@ const PATH_TO_UPLOADS_DIR = 'uploads/profile_images';
     }
 
     /**
-     * @ORM\PrePersist
      * @ORM\PreUpdate
+     * @ORM\PrePersist
      */
     public function upload()
     {
@@ -134,5 +137,18 @@ const PATH_TO_UPLOADS_DIR = 'uploads/profile_images';
            $fileName
        );
         $this->setFile(null);
+
+    }
+
+
+
+
+    public function getWebPath()
+    {
+        return self::FULLPATH_TO_IMAGES_DIR.'/'.$this->getName();
+    }
+    public  static function getPhotoPlaceholder()
+    {
+        return self::EMPLOYEE_PHOTO_PROFILE_PLACEHOLDER_DIR;
     }
 }

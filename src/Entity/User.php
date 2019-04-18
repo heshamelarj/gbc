@@ -410,36 +410,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
          return $this->getNom();
      }
 
-     /**
-      * @return mixed
-      */
-    /* public function getImages()
-     {
-         return $this->images;
-     }
-
-
-     public function AddImage(Image $image): self
-     {
-         if (!$this->images->contains($image)) {
-             $this->images[] = $image;
-             $image->setUser($this);
-         }
-         return $this;
-     }
-
-     public function removeImage(Image $image): self
-     {
-         if ($this->images->contains($image)) {
-             $this->images->removeElement($image);
-             // set the owning side to null (unless already changed)
-             if ($image->getUser() === $this) {
-                 $image->setUser(null);
-             }
-         }
-
-         return $this;
-     }*/
 
      /**
       * @return mixed

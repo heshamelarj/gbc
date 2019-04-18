@@ -11,7 +11,8 @@ require('../scss/admin.scss');
 //require the fontawesome package
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
+
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
-
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

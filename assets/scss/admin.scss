@@ -1,35 +1,17 @@
 @import "variables.scss";
 
 
-.menu-item-icon-projet{
-  color: #001f3f;
-}
-.menu-item-icon-client{
-  color: #00acd6;
-}
-.menu-item-icon-facture {
-  color: #5148ff;
-}
-.menu-item-icon-service{
-  color: #1b6d85;
-}
-.menu-item-icon-metier{
-  color: #00b3ee;
-}
-.menu-item-icon-tache{
-  color: #365bff
-}
-.menu-item-icon-employee{
-  color: #0f51ff
-}
-@each $current-treeview-color in $treeview-color-list {
-  $i : index($treeview-color-list, $current-treeview-color);
+
+@each $current-color in $menu-item-icon-color-list {
+  $i : index($menu-item-icon-color-list, $current-color);
   .treeview:nth-of-type(#{$i}) {
-    span{
-      color: $current-treeview-color;
+    i{
+      color: $current-color;
     }
+
   }
 }
+
 
 .employe-profile-thumbnail{
   max-width: 5em;
@@ -39,3 +21,50 @@
 
   }
 }
+#sonata-ba-field-container-s8feb4ca090_image_file{
+  label{
+    display: none;
+
+  }
+
+}
+
+span.help-block.sonata-ba-field-help
+  {
+  position: relative;
+  left: -50px;
+  &:before{
+    content: "\f030";
+    font-family: "FontAwesome","Font Awesome 5 Brands","Font Awesome 5 Free","Roboto Slab",sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    /*--adjust as necessary--*/
+    color: #000;
+    font-size: 30px;
+    padding-right: 0.5em;
+    position: relative;
+    top: 50px;
+    left: 48px;
+    cursor: pointer;
+    color: #777777;
+
+  }
+}
+
+.image-preview{
+  right:0;
+  top:0;
+  max-width: 7em;
+  max-height: 7em;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 7em;
+  height: 7em;
+
+
+}
+#s8feb4ca090_image_file{
+  display: none;
+}
+

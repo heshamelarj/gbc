@@ -9,6 +9,7 @@
 namespace App\Admin;
 
 
+use App\Entity\Image;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -17,29 +18,35 @@ class ImageAdmin extends AbstractAdmin
 {
     public function configureFormFields(FormMapper $form)
     {
-        $form->add('file',FileType::class,
-        [
-            'required'      =>      false
-        ]);
-    }
 
-    public function prePersist($image)
-    {
 
-        $this->manageFileUpload($image);
-
-    }
-    public function preUpdate($image)
-    {
-
-    }
-
-    public function manageFileUpload($image)
-    {
-
-        if($image->getFile())
+        if($this->hasParentFieldDescription())
         {
-            $image->refreshUpload();
+            $getter = 'get' . $this->getParentFieldDescription()->getFieldName();
+
+            $parent = $this->getParentFieldDescription()->getAdmin()->getSubject();
+            if($parent)
+            {
+                $image = $parent->$getter();
+            }else
+            {
+                $image = null;
+            }
+        }else
+        {
+            $image = $this->getSubject();
         }
+        $fileFieldOptions = ['required' =>  false];
+        if($image && ($webPath = $image->getWebPath()))
+        {
+
+            $fileFieldOptions['help'] = '<img src="'.$webPath.'" class="image-preview" id="employeImageUpload"/>';
+
+        }else
+        {
+            $fileFieldOptions['help'] = '<img src="'.Image::getPhotoPlaceholder().'" class="image-preview" id="employeImageUpload"/>';
+        }
+        $form->add('file',FileType::class,$fileFieldOptions);
     }
+
 }
