@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92853f0ee353c84fcead0d0dbee0cfe3",
+    "content-hash": "664ee27afd161257f699a544b118a466",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -5656,7 +5656,7 @@
         },
         {
             "name": "symfony/templating",
-            "version": "v4.2.5",
+            "version": "v4.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/templating.git",

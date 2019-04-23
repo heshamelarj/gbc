@@ -11,9 +11,10 @@ namespace App\Admin;
 
 use App\Entity\Image;
 use App\Entity\Metier;
+use App\Entity\Role;
 use App\Entity\Service;
 use App\Entity\Tache;
-use App\Services\UserSecurity;
+use App\Service\UserSecurity;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -47,7 +48,13 @@ class UserAdmin extends AbstractAdmin
                     'label'     =>      'Photo'
                 ])
             ->add('datenaissance', DateType::class)
-            ->add('role', TextType::class)
+            ->add('employeRoles', ModelType::class,
+        [
+            'class'     =>      Role::class,
+            'multiple'  =>      true,
+            'property'  =>      'name',
+            'btn_add'   =>      'Ajouter'
+        ])
             ->add('cin', TextType::class)
             ->add('telephone', TextType::class)
             ->add('metiers', ModelType::class,
@@ -109,7 +116,7 @@ class UserAdmin extends AbstractAdmin
             )
             ->addIdentifier('login')
             ->add('nom')
-            ->add('role')
+            ->add('employeRoles')
             ->add('metiers')
             ->add('services')
             ->add('taches');

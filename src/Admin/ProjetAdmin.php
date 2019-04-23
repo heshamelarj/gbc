@@ -12,9 +12,8 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Sonata\AdminBundle\Form\Type\ModelType;
@@ -22,6 +21,9 @@ use App\Entity\Client;
 
 class ProjetAdmin extends AbstractAdmin
 {
+
+
+
     protected function configureFormFields(FormMapper $form)
     {
 
@@ -38,14 +40,14 @@ class ProjetAdmin extends AbstractAdmin
                                     'currency'  =>      'MAD'
                                 ]
                             )
-                ->      add('client', ModelAutocompleteType::class,
+                ->      add('client', ModelType::class,
                                 [
                                     'class'     =>      Client::class,
                                     'property'  =>      'nom',
                                     'btn_add'   =>      'Ajouter Client'
                                 ]
                             )
-                ->      add('services', ModelAutocompleteType::class,
+                ->      add('services', ModelType::class,
                                 [
                                     'class'         =>      Service::class,
                                     'multiple'      =>      true,
@@ -55,6 +57,12 @@ class ProjetAdmin extends AbstractAdmin
                                 ]
                             );
     }
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+                    ->add('projetsAsJson','projetsjson');
+    }
+
     protected function configureDatagridFilters(DatagridMapper $filter)
     {
         $filter->add('nomprojet');

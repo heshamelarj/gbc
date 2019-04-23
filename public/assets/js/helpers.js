@@ -1,5 +1,6 @@
 
 window.onload = () => {
+    if (window.location.pathname == 'edit' || window.location.pathname == 'create')
     manageImageUploadStyling();
 };
 

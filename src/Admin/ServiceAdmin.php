@@ -35,7 +35,7 @@ class ServiceAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form)
     {
-        $queryBuilderObject = $this->repo->findByRoleField('designer');
+        $queryBuilderObject = $this->repo->findByRoleField('coder');
         $form   ->      add('nomservice', TextType::class)
                 ->      add('datedebut',DateTimeType::class)
                 ->      add('datefin', DateTimeType::class)
@@ -62,7 +62,7 @@ class ServiceAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $list)
     {
-        $list   ->      add('nomservice')
+        $list   ->      addIdentifier('nomservice')
                 ->      add('datedebut')
                 ->      add('datefin')
                 ->      add('employes');

@@ -1,0 +1,11 @@
+{% extends sonata_block.templates.block_base %}
+{% block block %}
+    <h1>{{ settings.title  }}</h1>
+    <div id="mychart"></div>
+
+{% endblock %}
+{% block javascripts %}
+    <script src={{ asset('public/assets/js/d3/d3.min.js') }}></script>
+    <script src={{ asset('public/assets/js/d3.js') }}></script>
+
+{% endblock %}

@@ -25,12 +25,25 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-    App\Services\FileUploader:
+    App\Service\FileUploader:
         arguments:
             $targetDirectory: '%profile_images_directory%'
+
+    app.admin.block.dashboard:
+        class:  App\Service\DashboardBlockService
+        arguments:
+                - ~
+                - '@templating'
+                - '@doctrine.orm.entity_manager'
+        public: true
+        tags:
+            - { name: sonata.block }
     admin.projet:
         class: App\Admin\ProjetAdmin
-        arguments: [~, App\Entity\Projet, ~]
+        arguments:
+            - ~
+            - App\Entity\Projet
+            - App\Controller\ProjetAdminController
         tags:
           - {name: sonata.admin, manager_type: orm, group: Projet, label: Projet}
 
@@ -76,5 +89,14 @@ services:
               arguments: [~, App\Entity\Image, ~  ]
               tags:
                 - {name: sonata.admin, manager_type: orm,  label: Image}
+
+    admin.role:
+              class: App\Admin\RoleAdmin
+              arguments: [~, App\Entity\Role, ~  ]
+              tags:
+                - {name: sonata.admin, manager_type: orm,  label: Role}
+
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

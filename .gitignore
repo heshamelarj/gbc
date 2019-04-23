@@ -3,6 +3,7 @@
 /node_modules/
 /public/build/
 /public/uploads/
+/public/assets/js/d3/*
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

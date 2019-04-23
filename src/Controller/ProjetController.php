@@ -20,9 +20,7 @@ class ProjetController extends AbstractController
      */
     public function index(ProjetRepository $projetRepository): Response
     {
-        return $this->render('projet/index.html.twig', [
-            'projets' => $projetRepository->findAll(),
-        ]);
+        return json_encode($projetRepository->findAll());
     }
 
     /**

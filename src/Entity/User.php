@@ -49,9 +49,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $datenaissance;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users")
      */
-    private $role;
+    private $employeRoles;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -105,7 +105,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
         $this->taches = new ArrayCollection();
         $this->messagetaches = new ArrayCollection();
         $this->messages = new ArrayCollection();
-//        $this->images = new ArrayCollection();
+        $this->employeRoles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,17 +161,28 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getEmployeRoles(): Collection
     {
-        return $this->role;
+        return $this->employeRoles;
     }
 
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
+     public function addEmployeRole(Role $role): self
+     {
+         if (!$this->employeRoles->contains($role)) {
+             $this->employeRoles[] = $role;
+         }
 
-        return $this;
-    }
+         return $this;
+     }
+
+     public function removeEmployeRole(Role $role): self
+     {
+         if ($this->employeRoles->contains($role)) {
+             $this->employeRoles->removeElement($role);
+         }
+
+         return $this;
+     }
 
     public function getCin(): ?string
     {
@@ -204,7 +215,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this->metiers;
     }
 
-    public function addMetier(metier $metier): self
+    public function addMetier(Metier $metier): self
     {
         if (!$this->metiers->contains($metier)) {
             $this->metiers[] = $metier;
@@ -213,7 +224,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
-    public function removeMetier(metier $metier): self
+    public function removeMetier(Metier $metier): self
     {
         if ($this->metiers->contains($metier)) {
             $this->metiers->removeElement($metier);
@@ -427,4 +438,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
          $this->image = $image;
          $image->setUser($this);
      }
+
+
  }
