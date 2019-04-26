@@ -29,15 +29,35 @@ services:
         arguments:
             $targetDirectory: '%profile_images_directory%'
 
-    app.admin.block.dashboard:
+    admin.block.service.dashboard:
         class:  App\Service\DashboardBlockService
         arguments:
-                - ~
+                - "admin.block.service.dashboard"
                 - '@templating'
                 - '@doctrine.orm.entity_manager'
         public: true
         tags:
             - { name: sonata.block }
+
+    admin.block.service.agenda:
+        class:  App\Service\AgendaBlockService
+        arguments:
+            - "admin.block.service.agenda"
+            - "@templating.engine.twig"
+            - "@doctrine.orm.default_entity_manager"
+        public: true
+        tags:
+            - {name: sonata.block}
+    admin.agenda:
+        class:  App\Admin\AgendaAdmin
+        arguments:
+            - ~
+            - ''
+            - App\Controller\AgendaAdminController
+        tags:
+            - {name: sonata.admin, manager_type: orm,Groupe: Agenda,  label: Agenda,  icon: '<i class="fa fa-calendar menu-item-icon"></i>'}
+
+
     admin.projet:
         class: App\Admin\ProjetAdmin
         arguments:

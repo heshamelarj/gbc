@@ -2,11 +2,18 @@ sonata_admin:
     title: 'GBC ADMINISTRATION'
     dashboard:
         blocks:
-            -
-              position: top
-              type: app.admin.block.dashboard
-
         groups:
+
+          Agenda:
+                on_top:               true
+                label:                'Agenda'
+                icon:                 '<i class="fa blue fa-calendar menu-item-icon"></i>'
+                label_catalogue: ~
+                items:
+                      - admin.agenda
+
+
+
           Projet:
                 label:                ~
                 icon:                 '<i class="fa blue fa-briefcase menu-item-icon"></i>'
@@ -82,12 +89,19 @@ sonata_admin:
 
           extra_javascripts:
               - assets/js/helpers.js
-              - assets/js/d3/d3.min.js
-              - assets/js/d3.js
+              - dependencies/fullcalendar/core/main.js
+              - dependencies/fullcalendar/bootstrap/main.js
+              - dependencies/fullcalendar/daygrid/main.js
+              - dependencies/fullcalendar/interaction/main.js
+              - assets/js/fetchers.js
+              - assets/js/fullcalendar.js
 
           extra_stylesheets:
               - bundles/sonatatranslation/css/sonata-translation.css
               - build/app.css
+              - dependencies/fullcalendar/bootstrap/main.css
+              - dependencies/fullcalendar/core/main.css
+              - dependencies/fullcalendar/daygrid/main.css
 
 
 
@@ -98,6 +112,7 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
-        app.admin.block.dashboard: ~
+        admin.block.service.dashboard: ~
+        admin.block.service.agenda: ~
 
 

@@ -1,0 +1,16 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block%}
+    {{ dump(data) }}
+    <div id="calendar">
+
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <script src={{ asset('public/dependencies/fullcalendar/core/main.css') }}></script>
+    <script src={{ asset('public/dependencies/fullcalendar/daygrid/main.css') }}></script>
+{% endblock %}
+{% block javascripts %}
+    <script src={{ asset('public/dependencies/fullcalendar/core/main.js') }}></script>
+    <script src={{ asset('public/dependencies/fullcalendar/daygrid/main.js') }}></script>
+{% endblock %}

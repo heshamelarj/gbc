@@ -42,8 +42,6 @@ class TacheAdmin extends AbstractAdmin
                                 [
                                     'class'        =>        User::class,
                                     'property'     =>        'nom',
-                                    'query'         =>        $this->urepo->findAllByExepctRoleValue('admin', 'chef') //TODO: best practice  this logic
-
                                 ])
                     ->      add('service', ModelType::class,
                                 [

@@ -1,6 +1,6 @@
 
 window.onload = () => {
-    if (window.location.pathname == 'edit' || window.location.pathname == 'create')
+    if (/(edit|create)$/.test(window.location.pathname))
     manageImageUploadStyling();
 };
 
@@ -18,3 +18,4 @@ const manageImageUploadStyling = () => {
         uploadFileImage.src = URL.createObjectURL(event.target.files[0]);
     });
 };
+
