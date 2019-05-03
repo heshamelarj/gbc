@@ -86,13 +86,14 @@ sonata_admin:
 
 
     assets:
-
           extra_javascripts:
-              - assets/js/helpers.js
               - dependencies/fullcalendar/core/main.js
               - dependencies/fullcalendar/bootstrap/main.js
               - dependencies/fullcalendar/daygrid/main.js
               - dependencies/fullcalendar/interaction/main.js
+              - dependencies/fullcalendar/timegrid/main.js
+              - dependencies/axios/axios.js
+              - assets/js/helpers.js
               - assets/js/fetchers.js
               - assets/js/fullcalendar.js
 
@@ -102,7 +103,7 @@ sonata_admin:
               - dependencies/fullcalendar/bootstrap/main.css
               - dependencies/fullcalendar/core/main.css
               - dependencies/fullcalendar/daygrid/main.css
-
+              - dependencies/fullcalendar/timegrid/main.css
 
 
 

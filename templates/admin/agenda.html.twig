@@ -3,7 +3,7 @@
     <div class="row">
         {{ sonata_block_render({'type': 'admin.block.service.agenda'},{
             'entity':               'App\\Entity\\Tache',
-            'repository_method':    'findByOneDayTimeLine',
+            'repository_method':    'findAllWithIdStartEndProperties',
             'title':                'Tache'
         }) }}
     </div>

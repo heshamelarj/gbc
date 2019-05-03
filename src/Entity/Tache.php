@@ -63,7 +63,6 @@ class Tache
 
     public function __construct()
     {
-        $this->services = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
         $this->stocks = new ArrayCollection();
         $this->messagetaches = new ArrayCollection();

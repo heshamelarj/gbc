@@ -20,6 +20,7 @@ final class AgendaAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->clearExcept(['list'])
-                    ->add('fetchOneDayTachesJson','');
+                    ->add('fetchOneDayTachesJson','')
+                    ->add('editTacheOnAgenda', '');
     }
 }

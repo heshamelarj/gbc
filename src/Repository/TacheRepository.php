@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Tache;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -18,15 +19,12 @@ class TacheRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Tache::class);
     }
-    public function findByOneDayTimeLine()
+    public function findAllWithIdStartEndProperties()
     {
         return $this->createQueryBuilder('t')
-                ->select('t.id,t.nomtache,t.datefin AS start ,t.datedebut as end ,DATE_DIFF(t.datefin,t.datedebut) AS tache_datediff')
-                ->groupBy('t.id,t.datefin ,t.datedebut ,t.nomtache,tache_datediff')
-                ->having('tache_datediff = 1')
+                ->select('t.id AS id,t.nomtache AS title,t.datedebut as start,t.datefin AS end')
                 ->getQuery()
                 ->getResult();
-
 
     }
     // /**
@@ -46,15 +44,15 @@ class TacheRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Tache
+
+    public function findOneById($value): ?Tache
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+
+            return $this->createQueryBuilder('t')
+                ->andWhere('t.id = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getOneOrNullResult();
     }
-    */
+
 }

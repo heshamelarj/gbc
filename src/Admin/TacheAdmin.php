@@ -20,6 +20,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -34,10 +36,17 @@ class TacheAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
 
-
         $form       ->      add('nomtache',TextType::class)
-                    ->      add('datedebut', DateType::class)
-                    ->      add('datefin', DateType::class)
+                    ->      add('datedebut', DateTimeType::class,
+                        [
+                            'format'        =>  'YYYY-MM-D H:mm:ss',
+                            'date_widget'   =>  'single_text',
+                        ])
+                    ->      add('datefin', DateTimeType::class,
+                        [
+                            'format'        =>  'YYYY-MM-D H:mm:ss',
+                            'date_widget'   =>  'single_text',
+                        ])
                     ->      add('employ', ModelType::class,
                                 [
                                     'class'        =>        User::class,
