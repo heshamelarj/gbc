@@ -10,7 +10,7 @@ function postData(url = ``, data = {}) {
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
-    body: data, // body data type must match "Content-Type" header
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
   }); // parses JSON response into native Javascript objects
 }
 function fetchData(url = ``) {

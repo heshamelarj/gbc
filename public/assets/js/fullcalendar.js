@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var calendarEl = document.getElementById("calendar");
   var calendar;
   let box = new ConfirmBox();
-
   fetchData("/admin/agenda/fetchOneDayTachesJson").then(data => {
     let colors = [];
     let dataWithColors = data.map(item => {
@@ -47,10 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
       eventResizeStop: info => {
         box.append();
         box.show();
-        box.actions();
       },
       eventResize: function(info) {
-        console.log(box.whichAction);
+        box.click(info);
       },
     });
     calendar.render();

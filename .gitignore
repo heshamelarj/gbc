@@ -14,3 +14,4 @@ yarn-error.log
 /.idea/
 /src/Migrations/
 /var/log
+var/log/*

@@ -21,6 +21,7 @@ final class AgendaAdmin extends AbstractAdmin
     {
         $collection->clearExcept(['list'])
                     ->add('fetchOneDayTachesJson','')
-                    ->add('editTacheOnAgenda', '');
+                    ->add('editTacheOnAgenda', '')
+                    ->add('updateTacheDuration', '');
     }
 }

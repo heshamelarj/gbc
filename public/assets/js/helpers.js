@@ -28,10 +28,8 @@ function padTime(val) {
   }
   return val;
 }
-
 let ConfirmBox = function() {
   this.ok;
-  this.whichAction;
   this.cancel;
   this.init();
 };
@@ -53,7 +51,6 @@ ConfirmBox.prototype = {
       confirmBox.innerHTML = html;
       return confirmBox;
     } else return document.querySelector("#confirmBox");
-    //confirmBox.classList.toggle("toggle-on");
   },
   append: function() {
     let confirmBoxDOM = this.create();
@@ -69,19 +66,126 @@ ConfirmBox.prototype = {
     confirmBox.classList.remove("show");
     confirmBox.classList.add("hide");
   },
-  actions: function() {
+  //TODO: fix the click event firing multiple times
+  click: function(info) {
     let self = this;
-    let actionTaken;
     self.cancel = document.querySelector("#confirmCancel");
     self.ok = document.querySelector("#confirmOk");
-    self.ok.addEventListener("click", clickEventFired);
-    function clickEventFired() {
-      self.hide();
-      self.whichAction = "ok";
-    }
-    self.cancel.addEventListener("click", function() {
-      self.hide();
-      self.whichAction = "cancel";
-    });
+    console.log("click event handler");
+
+    handleButtonClick(
+      self,
+      function() {
+        self.hide();
+      },
+      info,
+    );
   },
+};
+function handleButtonClick(self, callback, info) {
+  self.ok.addEventListener(
+    "click",
+    function(event) {
+      event.preventDefault();
+      callback();
+      handleButtonOk(info);
+    },
+    false,
+  );
+  self.cancel.addEventListener(
+    "click",
+    function(event) {
+      event.preventDefault();
+      handleButtonCancel(info);
+      callback();
+    },
+    false,
+  );
+}
+function handleButtonOk(info) {
+  console.log("handleButtonOk called ");
+
+  updateEventDuration(info);
+}
+function handleButtonCancel(info) {
+  console.log("handleButtonCancel called ");
+
+  info.revert();
+}
+function updateEventDuration(info) {
+  console.log(info);
+  let tacheID = info.prevEvent._def.publicId;
+  let tache = {
+    id: tacheID,
+    end: addTimeToEvent(info),
+  };
+  postData("/admin/agenda/updateTacheDuration", tache);
+}
+function addTimeToEvent(info) {
+  let { hours, mins, secs } = { ...getRangesDiff(info) };
+  let { current, prev } = { ...getCurrentAndPrevEndRanges(info) };
+  let newEndDate;
+  if (hours !== 0) {
+    newEndDate = moment(current).add("hours", hours);
+  }
+  if (mins !== 0) {
+    newEndDate = moment(current).add("minutes", mins);
+  }
+  if (secs !== 0) {
+    newEndDate = moment(current).add("seconds", secs);
+  }
+  return (newEndDate = newEndDate._d);
+}
+function getRangesDiff(info) {
+  let { current, prev } = { ...getCurrentAndPrevEndRanges(info) };
+  console.log(current);
+  console.log(prev);
+  return ({ h, m, s } = {
+    ...rangesDiff(moment.utc(current), moment.utc(prev)),
+  });
+}
+function getCurrentAndPrevEndRanges(info) {
+  let current = info.event._instance.range.end.toString().substring(0, 25);
+  let prev = info.prevEvent._instance.range.end.toString().substring(0, 25);
+  return {
+    current: current,
+    prev: prev,
+  };
+}
+function rangesDiff(currentRange, prevRange) {
+  let current = moment(currentRange, "dddd D MMMM YYYY LT");
+  let prev = moment(prevRange, "dddd D MMMM YYYY LT");
+  let diff;
+  diff = current.diff(prev);
+  return millisecondsToHours(diff);
+}
+
+const millisecondsToHours = function(diffInMilli) {
+  let absDiff;
+  let secs;
+  let mins;
+  let hours;
+  if (diffInMilli < 0) {
+    absDiff = Math.abs(diffInMilli);
+    secs = Math.floor((absDiff / 1000) % 60);
+    mins = Math.floor((absDiff / 1000 / 60) % 60);
+    hours = Math.floor(absDiff / 1000 / 60 / 60);
+  } else {
+    secs = Math.floor((diffInMilli / 1000) % 60);
+    mins = Math.floor((diffInMilli / 1000 / 60) % 60);
+    hours = Math.floor(diffInMilli / 1000 / 60 / 60);
+  }
+
+  if (diffInMilli < 0) {
+    return {
+      hours: hours > 0 ? hours * -1 : hours,
+      minutes: mins > 0 ? mins * -1 : mins,
+      seconds: secs > 0 ? secs * -1 : secs,
+    };
+  }
+  return {
+    hours: hours,
+    minutes: mins,
+    seconds: secs,
+  };
 };

@@ -57,4 +57,21 @@ class AgendaAdminController extends CRUDController
 
 
     }
+    public function updateTacheDurationAction(Request $request,TacheRepository $tacheRepository, EntityManagerInterface $entityManager) {
+        $parametersAsArray = [];
+        if($request->getContent()) $parametersAsArray = json_decode($request->getContent());
+        if($parametersAsArray){
+
+            $tacheId = ((int)$parametersAsArray->id);
+            $tacheToBeUpdated = $tacheRepository->findOneById($tacheId);
+            $tacheToBeUpdated->setDatefin(new \DateTime($parametersAsArray->end));
+            $entityManager->persist($tacheToBeUpdated);
+            $entityManager->flush();
+
+            $response = new Response('Tache Identifies by ID: '.$parametersAsArray->id.' Datefin Date Updated Successfully ', Response::HTTP_OK);
+            return $response;
+
+
+        }
+    }
 }
